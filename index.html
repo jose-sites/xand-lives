@@ -43,28 +43,39 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;back
 nav{position:fixed;top:0;left:0;right:0;z-index:500;height:60px;
   background:rgba(6,8,16,0.55);border-bottom:1px solid var(--border2);
   backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem}
-
-/* MENU DE CATEGORIAS */
-.category-menu{position:fixed;top:60px;left:0;right:0;z-index:400;height:50px;
-  background:rgba(6,8,16,0.8);border-bottom:1px solid var(--border2);
-  backdrop-filter:blur(16px);display:flex;align-items:center;padding:0 1.5rem;gap:2rem}
-.cat-btn{padding:12px 0;background:none;border:none;color:var(--text2);cursor:pointer;
+.site-tabs{position:fixed;top:60px;left:0;right:0;height:46px;z-index:499;
+  background:rgba(9,12,20,0.92);border-bottom:1px solid var(--border2);
+  backdrop-filter:blur(16px);display:flex;align-items:stretch;justify-content:center;gap:.4rem;padding:0 1rem}
+.site-tab-btn{background:none;border:none;color:var(--text2);cursor:pointer;
   font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:1.5px;
-  text-transform:uppercase;transition:all 0.3s;border-bottom:3px solid transparent;
-  position:relative}
-.cat-btn:hover{color:var(--gold)}
-.cat-btn.active{color:var(--gold);border-bottom-color:var(--gold)}
-
-/* SEÇÕES */
-.category-section{display:none;position:fixed;top:110px;left:0;right:0;
-  height:calc(100vh - 110px);overflow-y:auto;z-index:1;background:var(--dark)}
-.category-section.active{display:block}
-.category-section .left{height:auto;padding-top:0;overflow:visible}
-
-@media(max-width:700px){
-  .category-menu{height:45px;padding:0 1rem;gap:0.5rem;top:50px}
-  .cat-btn{font-size:11px;letter-spacing:0.5px;padding:10px 0}
-}
+  display:flex;align-items:center;gap:6px;padding:0 .9rem;border-bottom:2px solid transparent;transition:all .2s}
+.site-tab-btn:hover{color:var(--text)}
+.site-tab-btn.active{color:var(--gold);border-bottom-color:var(--gold)}
+.site-view{display:none}
+.site-view.active{display:block}
+main.site-view.active{display:flex}
+.page-view{padding-top:106px;min-height:100vh;padding-left:1.5rem;padding-right:1.5rem;padding-bottom:2.5rem}
+.page-inner{max-width:760px;margin:0 auto}
+.page-hero{text-align:center;padding:1.6rem 0 1.2rem}
+.page-hero h1{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:3px;color:#fff;margin-bottom:6px}
+.page-hero p{color:var(--text2);font-size:14px}
+.step-card{display:flex;gap:14px;background:var(--card);border:1px solid var(--border2);border-radius:14px;
+  padding:16px;margin-bottom:12px;align-items:flex-start}
+.step-num{flex-shrink:0;width:34px;height:34px;border-radius:50%;background:rgba(111,216,255,0.12);
+  border:1px solid rgba(111,216,255,0.35);color:var(--gold);display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;font-size:16px}
+.step-body h3{font-size:15px;color:#fff;margin-bottom:3px}
+.step-body p{font-size:13px;color:var(--text2);line-height:1.5}
+.winbet-cta{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;
+  background:linear-gradient(135deg,rgba(111,216,255,0.1),rgba(111,216,255,0.03));
+  border:1px solid rgba(111,216,255,0.3);border-radius:16px;padding:1.6rem;margin:1.4rem 0}
+.winbet-cta p{color:var(--text2);font-size:13px}
+.winbet-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));color:#08131c;text-decoration:none;
+  border-radius:12px;font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:2px;
+  box-shadow:0 4px 20px rgba(111,216,255,0.3);transition:transform .2s}
+.winbet-btn:hover{transform:translateY(-2px)}
+#pubRankList .ri{padding:12px 0}
 .logo{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:4px;
   background:linear-gradient(135deg,var(--gold),#bfeeff,var(--gold2));
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
@@ -84,8 +95,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:60px;
   border:none;padding:9px 22px;border-radius:999px;cursor:pointer;text-transform:uppercase;transition:all 0.2s;box-shadow:0 4px 18px rgba(111,216,255,0.35)}
 .nav-admin:hover{box-shadow:0 4px 16px rgba(111,216,255,0.4);transform:translateY(-1px)}
 
-main{padding-top:0;display:flex;height:calc(100vh - 110px);overflow:hidden;position:fixed;
-  top:110px;left:0;right:0;z-index:1;width:100%}
+main{padding-top:106px;display:flex;height:calc(100vh - 106px);overflow:hidden;position:relative;z-index:1}
 
 /* MOBILE NAV TABS */
 .mobile-tabs{display:none;position:fixed;bottom:0;left:0;right:0;z-index:400;
@@ -99,20 +109,27 @@ main{padding-top:0;display:flex;height:calc(100vh - 110px);overflow:hidden;posit
 .mtab.active::after{content:'';display:block;width:32px;height:2px;background:var(--gold);
   margin:4px auto 0;border-radius:2px}
 
-.left{flex:1;overflow-y:auto;padding:1.2rem 1.4rem;background:var(--dark);position:relative;height:calc(100vh - 60px)}
+.left{flex:1;overflow-y:auto;padding:1.2rem 1.4rem;background:var(--dark);position:relative;height:calc(100vh - 106px)}
 .left::-webkit-scrollbar{width:3px}
 .left::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
 .left-locked{overflow:hidden!important}
-.left-locked::after{content:'🔒  RINHA FECHADA';position:absolute;inset:0;z-index:50;
-  background:rgba(3,4,7,0.97);display:flex;align-items:center;justify-content:center;
-  font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:4px;color:var(--text2);
-  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);pointer-events:all;cursor:not-allowed}
+.left-locked::after{content:'';position:absolute;inset:0;z-index:50;
+  background:rgba(3,4,7,0.97);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  pointer-events:all;cursor:not-allowed}
+.lock-msg{display:none;position:absolute;inset:0;z-index:51;align-items:center;justify-content:center;
+  gap:10px;font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:4px;color:var(--text2);
+  pointer-events:none;text-align:center;padding:0 1rem}
+.left-locked .lock-msg{display:flex}
+.lock-msg svg{flex-shrink:0}
 
 @media(max-width:700px){
   :root{
     font-size: 14px;
   }
-  body main{flex-direction:column;height:auto;min-height:calc(100vh - 50px);overflow:visible;padding-top:50px;padding-bottom:70px}
+  body main{flex-direction:column;height:auto;min-height:calc(100vh - 90px);overflow:visible;padding-top:90px;padding-bottom:70px}
+  body .site-tabs{top:50px;height:40px}
+  body .site-tab-btn{font-size:12px;padding:0 .6rem;gap:4px}
+  body .page-view{padding-top:90px}
   body .left{width:100%;flex:none;height:auto;overflow:visible;padding:0.8rem 0.8rem;min-height:auto}
   body .right{width:100%;min-width:0;border-left:none;border-top:1px solid var(--border2);
     display:none;min-height:auto;max-height:70vh;overflow-y:auto;padding:0.8rem;height:auto}
@@ -146,7 +163,10 @@ main{padding-top:0;display:flex;height:calc(100vh - 110px);overflow:hidden;posit
   :root{
     font-size: 12px;
   }
-  body main{min-height:calc(100vh - 48px);padding-top:48px;padding-bottom:60px}
+  body main{min-height:calc(100vh - 88px);padding-top:88px;padding-bottom:60px}
+  body .site-tabs{top:48px;height:40px}
+  body .site-tab-btn{font-size:10px;padding:0 .4rem}
+  body .page-view{padding-top:88px}
   body nav{height:48px;padding:0 0.8rem}
   body .mobile-tabs{height:60px}
   body .logo{font-size:14px;letter-spacing:1px}
@@ -238,7 +258,7 @@ main{padding-top:0;display:flex;height:calc(100vh - 110px);overflow:hidden;posit
 .sc-prov{font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--text2)}
 
 .right{width:320px;min-width:320px;background:var(--card);border-left:1px solid var(--border2);
-  display:flex;flex-direction:column;overflow-y:auto;height:calc(100vh - 60px)}
+  display:flex;flex-direction:column;overflow-y:auto;height:calc(100vh - 106px)}
 .right::-webkit-scrollbar{width:3px}
 .right::-webkit-scrollbar-thumb{background:var(--border2)}
 .panel-hdr{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:2px;
@@ -361,7 +381,7 @@ main{padding-top:0;display:flex;height:calc(100vh - 110px);overflow:hidden;posit
 #ap.open{display:block}
 .ap-nav{background:rgba(6,8,16,0.98);border-bottom:1px solid var(--border2);padding:0 1.5rem;
   height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;backdrop-filter:blur(16px)}
-.ap-body{max-width:1200px;margin:0 auto;padding:1.5rem;display:grid;grid-template-columns:360px 1fr;gap:1.5rem}
+.ap-body{max-width:1200px;margin:0 auto;padding:1.5rem;display:flex;flex-direction:column;gap:1.5rem}
 .ap-card{background:var(--card);border:1px solid var(--border2);border-radius:16px;padding:1.4rem}
 .ap-title{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:2px;color:#fff;margin-bottom:1.2rem}
 
@@ -506,6 +526,69 @@ main{padding-top:0;display:flex;height:calc(100vh - 110px);overflow:hidden;posit
 @media(prefers-reduced-motion:reduce){
   .ico-float,.brand-logo,.brand-logo-lg{animation:none}
 }
+
+/* ── PÁGINA RHYNO ── */
+.rhyno-hero{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;padding:2rem 0 1rem}
+.rhyno-logo-wrap{position:relative;display:flex;align-items:center;justify-content:center;width:190px;height:190px;border-radius:50%;
+  background:radial-gradient(circle,rgba(111,216,255,0.18),rgba(111,216,255,0.04) 62%,transparent 72%);
+  border:1px solid rgba(111,216,255,0.28);box-shadow:0 0 60px rgba(111,216,255,0.18),inset 0 0 40px rgba(111,216,255,0.08)}
+.rhyno-logo{max-width:62%;max-height:62%;object-fit:contain;filter:drop-shadow(0 0 14px rgba(111,216,255,0.45))}
+.rhyno-mark{flex-direction:column;align-items:center;gap:4px;color:var(--gold);filter:drop-shadow(0 0 14px rgba(111,216,255,0.45))}
+.rhyno-mark span{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:4px;color:#fff}
+.rhyno-hero h1{font-family:'Bebas Neue',sans-serif;font-size:44px;letter-spacing:6px;color:#fff;line-height:1}
+.rhyno-sub{color:var(--text2);font-size:15px;line-height:1.6;max-width:520px}
+.rhyno-points{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%;max-width:560px;margin:.4rem 0}
+.rhyno-pt{display:flex;flex-direction:column;align-items:center;gap:6px;background:var(--card);border:1px solid var(--border2);border-radius:14px;padding:14px 8px}
+.rhyno-pt b{width:30px;height:30px;border-radius:50%;background:rgba(111,216,255,0.12);border:1px solid rgba(111,216,255,0.35);color:var(--gold);
+  display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:15px;font-weight:400}
+.rhyno-pt span{font-size:13px;font-weight:600;color:var(--text);line-height:1.3}
+.rhyno-btn{padding:15px 38px;font-size:20px;margin-top:.4rem}
+.rhyno-note{font-size:12px;color:var(--text2)}
+@media(max-width:480px){.rhyno-points{grid-template-columns:1fr}.rhyno-pt{flex-direction:row;justify-content:flex-start;padding:10px 14px}.rhyno-logo-wrap{width:160px;height:160px}}
+
+/* ── ADMIN: participantes / Pix ── */
+.adm-in{padding:9px 12px;background:var(--card2);border:1px solid var(--border2);border-radius:6px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:600;outline:none;transition:border-color .2s;width:100%}
+.adm-in:focus{border-color:var(--gold)}
+.qi-src{background:rgba(111,216,255,0.15);color:var(--gold)}
+.qi-src.manual{background:rgba(255,255,255,0.08);color:var(--text2)}
+.pix-row{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text2);margin-top:3px}
+.pix-val{font-family:ui-monospace,Menlo,Consolas,monospace;letter-spacing:1px;color:var(--text);user-select:text;-webkit-user-select:text;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pix-eye{background:none;border:1px solid var(--border2);color:var(--text2);border-radius:6px;cursor:pointer;padding:2px 7px;font-size:13px;line-height:1.3;flex-shrink:0;transition:all .15s}
+.pix-eye:hover{color:var(--gold);border-color:var(--gold)}
+.pix-eye-lg{padding:0 12px;font-size:16px}
+.pix-missing{color:var(--red);flex-wrap:wrap}
+.pix-missing input{flex:1;min-width:110px;padding:4px 8px;background:var(--card2);border:1px solid var(--red);border-radius:5px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:12px;outline:none}
+.pix-missing button{padding:4px 10px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#08131c;border:none;border-radius:5px;font-weight:700;font-size:11px;cursor:pointer;font-family:'Rajdhani',sans-serif}
+
+/* ── ADMIN: palco (fila por ordem de chegada + roleta opcional) ── */
+.ap-tools{display:flex;gap:10px;flex-wrap:wrap}
+.tool-btn{padding:10px 18px;background:var(--card);border:1px solid var(--border2);border-radius:10px;color:var(--text2);cursor:pointer;
+  font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:1.5px;transition:all .2s}
+.tool-btn:hover{color:var(--gold);border-color:var(--gold)}
+.tool-btn.on{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#08131c;border-color:var(--gold)}
+.ap-stage{display:grid;grid-template-columns:1fr;gap:1.5rem;align-items:start}
+.ap-stage .stage-wheel{display:none}
+.ap-stage.wheel-on{grid-template-columns:minmax(0,1.5fr) minmax(300px,1fr)}
+.ap-stage.wheel-on .stage-wheel{display:block}
+.stage-wheel .wheel-wrap{width:min(100%,440px);height:auto;aspect-ratio:1/1}
+.stage-wheel #wc{width:100%;height:100%}
+.ap-stage:not(.wheel-on) .q-scroll{max-height:none}
+.qi.first{border:1px solid rgba(111,216,255,0.55);background:rgba(111,216,255,0.07);border-radius:10px;padding-left:8px;padding-right:8px;box-shadow:0 0 18px rgba(111,216,255,0.12)}
+.qi-next{font-size:9px;font-weight:700;letter-spacing:1px;padding:2px 6px;border-radius:4px;background:var(--gold);color:#08131c;margin-left:6px;vertical-align:middle}
+.qi-go{background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.4);color:var(--green);border-radius:6px;cursor:pointer;padding:4px 8px;font-size:14px;flex-shrink:0;transition:all .15s}
+.qi-go:hover{background:rgba(34,197,94,0.25)}
+body.wheel-off .res-btn-r{display:none}
+/* tela cheia: esconde controles e cadastro manual pra ficar limpo na live */
+body.is-full .ap-nav,body.is-full .ap-controls,body.is-full #manualBox{display:none}
+body.is-full .ap-body{max-width:none;padding:1rem 1.5rem}
+body.is-full .q-scroll{max-height:calc(100vh - 210px)}
+body.is-full .qi-nick{font-size:18px}
+body.is-full .pix-row{display:none} /* nunca mostra Pix na tela cheia (live) */
+@media(max-width:900px){.ap-stage.wheel-on{grid-template-columns:1fr}}
+.rhyno-status{font-size:12px;color:var(--text2);margin:8px 0;line-height:1.5}
+.rhyno-status.ok b{color:var(--green)}
+.rhyno-status.err b{color:var(--red)}
+.rhyno-status i{color:var(--gold);font-style:normal}
 </style>
 </head>
 <body>
@@ -514,13 +597,6 @@ main{padding-top:0;display:flex;height:calc(100vh - 110px);overflow:hidden;posit
 <div class="fb-loading" id="fbLoad">
   <div class="fb-spinner"></div>
   <div class="fb-txt">Conectando ao servidor...</div>
-</div>
-
-<div class="mobile-tabs">
-  <div class="mobile-tab-btns">
-    <button class="mtab active" id="mtab-jogos" onclick="mobileTab('jogos')"><span class="ico-float" style="animation-delay:0s"><svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1.3" fill="currentColor" stroke="none"/><circle cx="16" cy="8" r="1.3" fill="currentColor" stroke="none"/><circle cx="8" cy="16" r="1.3" fill="currentColor" stroke="none"/><circle cx="16" cy="16" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/></svg></span> JOGOS</button>
-    <button class="mtab" id="mtab-painel" onclick="mobileTab('painel')"><span class="ico-float alt" style="animation-delay:0.4s"><svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="4" width="14" height="17" rx="2"/><rect x="9" y="2" width="6" height="4" rx="1"/><line x1="8" y1="11" x2="16" y2="11"/><line x1="8" y1="15" x2="16" y2="15"/></svg></span> MEU PAINEL</button>
-  </div>
 </div>
 
 <nav>
@@ -532,182 +608,102 @@ main{padding-top:0;display:flex;height:calc(100vh - 110px);overflow:hidden;posit
   <button class="nav-admin" onclick="openAdmin()"><span class="ico-float" style="animation-delay:0.2s"><svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V21a2 2 0 1 1-4 0v-.09A1.7 1.7 0 0 0 9 19.4a1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.55-1H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.34-1.87l-.06-.06A2 2 0 1 1 7.03 4.24l.06.06A1.7 1.7 0 0 0 9 4.64a1.7 1.7 0 0 0 1-1.55V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1 1.55 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 9a1.7 1.7 0 0 0 1.55 1H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.51 1z"/></svg></span> Admin</button>
 </nav>
 
-<!-- MENU DE CATEGORIAS -->
-<div class="category-menu">
-  <button class="cat-btn active" onclick="switchCategory('slots')">🎰 Slots</button>
-  <button class="cat-btn" onclick="switchCategory('como-jogar')">📚 Como Jogar</button>
-  <button class="cat-btn" onclick="switchCategory('ranking')">🏆 Ranking Live</button>
+<div class="site-tabs">
+  <button class="site-tab-btn active" id="stab-rhyno" onclick="siteTab('rhyno')">
+    <svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1.3" fill="currentColor" stroke="none"/><circle cx="16" cy="8" r="1.3" fill="currentColor" stroke="none"/><circle cx="8" cy="16" r="1.3" fill="currentColor" stroke="none"/><circle cx="16" cy="16" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/></svg>
+    RHYNO
+  </button>
+  <button class="site-tab-btn" id="stab-como" onclick="siteTab('como')">
+    <svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.8-2 3.5"/><circle cx="12" cy="16.3" r=".6" fill="currentColor" stroke="none"/></svg>
+    COMO JOGAR
+  </button>
+  <button class="site-tab-btn" id="stab-ranking" onclick="siteTab('ranking')">
+    <svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 4h8v4a4 4 0 0 1-8 0V4z"/><path d="M8 5H5a3 3 0 0 0 3 4"/><path d="M16 5h3a3 3 0 0 1-3 4"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="16" x2="12" y2="20"/></svg>
+    RANKING
+  </button>
 </div>
 
-<main>
-  <div class="left" id="leftPanel">
-    <div class="search-bar">
-      <input id="si" type="text" placeholder="Pesquisar slot pelo nome ou provedor..." oninput="filterSlots()">
-      <span class="search-ico"><span class="ico-float alt" style="animation-delay:0.3s"><svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="6"/><line x1="20" y1="20" x2="15.5" y2="15.5"/></svg></span></span>
-    </div>
-    <div class="plat-row">
-      <button class="plat-btn active" onclick="setPlat('winebet',this)">WINEBET</button>
-    </div>
-    <div class="prov-tabs" id="provTabs"></div>
-    <div class="manual-wrap">
-      <div class="manual-lbl">Jogo não encontrado? Digite manualmente:</div>
-      <div class="manual-row">
-        <input type="text" id="manualInput" placeholder="Ex: Money Train 3..." maxlength="60">
-        <button class="manual-ok" onclick="selectManual()">Usar este</button>
+<!-- RHYNO -->
+<div class="site-view page-view active" id="view-rhyno">
+  <div class="page-inner">
+    <div class="rhyno-hero">
+      <div class="rhyno-logo-wrap">
+        <!-- Coloque o arquivo oficial do logo da Rhyno como "rhyno-logo.png" na mesma pasta deste HTML -->
+        <img id="rhynoLogo" class="rhyno-logo" src="rhyno-logo.png" alt="Rhyno"
+             onerror="this.style.display='none';document.getElementById('rhynoMark').style.display='flex'">
+        <div class="rhyno-mark" id="rhynoMark" style="display:none">
+          <svg viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"><path d="M32 4l24 14v28L32 60 8 46V18z"/><path d="M24 44V22h10a7 7 0 0 1 0 14H24m10 0l8 8"/></svg>
+          <span>RHYNO</span>
+        </div>
       </div>
-    </div>
-    <div class="sec-hdr">
-      <h2>JOGOS EM DESTAQUE</h2>
-      <span class="cnt-tag" id="cntTag">0 JOGOS</span>
-    </div>
-    <div class="slots-grid" id="grid"></div>
-  </div>
-
-  <div class="right">
-    <div class="panel-hdr">SLOT ESCOLHIDO</div>
-    <div class="sel-preview" id="prev">
-      <div class="no-sel"><span class="q"><span class="ico-float" style="animation-delay:0s"><svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1.3" fill="currentColor" stroke="none"/><circle cx="16" cy="8" r="1.3" fill="currentColor" stroke="none"/><circle cx="8" cy="16" r="1.3" fill="currentColor" stroke="none"/><circle cx="16" cy="16" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/></svg></span></span><p>Nenhum jogo selecionado<br>Escolha um card ou escreva o nome.</p></div>
-    </div>
-    <div id="sn" class="sel-name" style="display:none"></div>
-    <div id="ss" class="sel-sub" style="display:none"></div>
-    <div class="nick-row" onclick="openNick()">
-      <span class="nick-lbl">NICK:</span>
-      <span class="nick-val" id="nd">Clique para definir</span>
-      <span style="color:var(--text2);font-size:13px;flex-shrink:0"><span class="ico-float alt" style="animation-delay:0.5s"><svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20l4-1 11-11-3-3L5 16l-1 4z"/></svg></span></span>
-    </div>
-    <div class="bonus-sec">
-      <div class="bonus-lbl">VALOR DEFINIDO PELO STREAMER</div>
-      <div id="bd" class="bonus-wait">Aguardando streamer</div>
-    </div>
-    <div class="rules">
-      <div class="rules-t">Regras e avisos</div>
-      <div class="rule">Proibido para menores de 18 anos</div>
-      <div class="rule">Confira seu nick antes de enviar.</div>
-      <div class="rule">Confirme se o jogo tem o bônus respectivo ao valor do ticket</div>
-      <div class="rule">Se a rinha fechar antes do pagamento, avise o streamer.</div>
-    </div>
-    <label class="accept"><input type="checkbox" id="ac" onchange="chkReady()"> Li e aceito as regras</label>
-    <button class="sub-btn off" id="sb" onclick="startCheckout()">AGUARDANDO RINHA ABRIR</button>
-  </div>
-</main>
-
-<!-- SEÇÃO: SLOTS (principal, já existe dentro de main) -->
-
-<!-- SEÇÃO: COMO JOGAR -->
-<div class="category-section" id="como-jogar-section">
-  <div class="left" style="background:var(--dark);padding:1.2rem 1.4rem">
-    <h2 style="font-family:'Bebas Neue';font-size:36px;letter-spacing:2px;margin-bottom:1.5rem;color:var(--gold)">📚 COMO JOGAR</h2>
-    
-    <div style="background:var(--card);border:1px solid var(--border2);border-radius:12px;padding:1.5rem;margin-bottom:2rem">
-      <h3 style="font-size:20px;margin-bottom:1rem;color:var(--gold)">🎯 Objetivo</h3>
-      <p style="color:var(--text2);line-height:1.6;font-size:14px">
-        Participar da rinha de slots e ser o jogador com maior retorno de bônus. O prêmio final é a soma de todos os retornos dos bônus sorteados.
-      </p>
-    </div>
-
-    <div style="background:var(--card);border:1px solid var(--border2);border-radius:12px;padding:1.5rem;margin-bottom:2rem">
-      <h3 style="font-size:20px;margin-bottom:1rem;color:var(--gold)">📋 Passo a Passo</h3>
-      <ol style="color:var(--text2);line-height:1.8;font-size:14px;padding-left:1.5rem">
-        <li style="margin-bottom:1rem"><strong>Identifique-se</strong> - Digite seu nick do Discord exatamente como está no servidor</li>
-        <li style="margin-bottom:1rem"><strong>Escolha o slot</strong> - Selecione o jogo de slot que deseja jogar</li>
-        <li style="margin-bottom:1rem"><strong>Pague o ticket</strong> - Envie o valor definido via PIX/LivePix para o streamer</li>
-        <li style="margin-bottom:1rem"><strong>Aguarde a roda</strong> - O streamer ativa a roleta e seleciona um jogador sorteado</li>
-        <li style="margin-bottom:1rem"><strong>Streamer joga o bônus</strong> - Se sorteado, o streamer joga o bônus do slot e anota seu retorno</li>
-        <li><strong>Maior retorno vence</strong> - Quem tiver o maior retorno leva o prêmio total!</li>
-      </ol>
-    </div>
-
-    <div style="background:var(--card);border:1px solid var(--border2);border-radius:12px;padding:1.5rem;margin-bottom:2rem">
-      <h3 style="font-size:20px;margin-bottom:1rem;color:var(--gold)">⚠️ Regras Importantes</h3>
-      <ul style="color:var(--text2);line-height:1.8;font-size:14px;padding-left:1.5rem">
-        <li>✅ Tickets pagos não são reembolsáveis</li>
-        <li>✅ O prêmio é a SOMA de todos os retornos, não a soma dos tickets</li>
-        <li>✅ Não é permitido trocar de slot após pagamento</li>
-        <li>✅ Bônus inválidos (abertos antes) não contam</li>
-        <li>✅ O resultado é final após confirmação do streamer</li>
-        <li>✅ Maior retorno = vencedor do prêmio total</li>
-      </ul>
-    </div>
-
-    <div style="background:linear-gradient(135deg,rgba(111,216,255,0.1),rgba(58,168,230,0.05));border:1px solid var(--gold);border-radius:12px;padding:1.5rem;margin-bottom:2rem">
-      <h3 style="font-size:20px;margin-bottom:1rem;color:var(--gold)">🎮 Plataformas de Jogo</h3>
-      <p style="color:var(--text2);line-height:1.6;font-size:14px;margin-bottom:1rem">
-        Para jogar com segurança e com as melhores condições, use a plataforma oficial recomendada:
-      </p>
-      <a href="https://winebet.com/br?tag=d_6101469m_97143c_" target="_blank" 
-         style="display:inline-block;padding:12px 24px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#08131c;
-                 border-radius:8px;text-decoration:none;font-weight:700;font-size:14px;letter-spacing:1px;
-                 transition:all 0.3s;cursor:pointer;margin-top:0.5rem;box-shadow:0 4px 12px rgba(111,216,255,0.3)">
-        🔗 Acessar WINEBET
-      </a>
-    </div>
-
-    <div style="background:var(--card);border:1px solid var(--border2);border-radius:12px;padding:1.5rem">
-      <h3 style="font-size:20px;margin-bottom:1rem;color:var(--gold)">❓ Dúvidas Frequentes</h3>
-      <div style="margin-bottom:1.5rem">
-        <p style="color:var(--gold);font-weight:700;margin-bottom:0.5rem">Posso entrar na rinha depois que ela abriu?</p>
-        <p style="color:var(--text2);font-size:13px">Sim, mas você só entra na próxima roleta. Se enviar o pagamento enquanto está rolando, entra na fila para a próxima.</p>
+      <h1>RHYNO</h1>
+      <p class="rhyno-sub">A Rhyno é onde a fila do Xand acontece. Entre por lá para garantir a sua vaga — os participantes da fila são reunidos aqui no Hunter para a roleta.</p>
+      <div class="rhyno-points">
+        <div class="rhyno-pt"><b>1</b><span>Entre na Rhyno</span></div>
+        <div class="rhyno-pt"><b>2</b><span>Entre na fila do Xand</span></div>
+        <div class="rhyno-pt"><b>3</b><span>Acompanhe a roleta na live</span></div>
       </div>
-      <div style="margin-bottom:1.5rem">
-        <p style="color:var(--gold);font-weight:700;margin-bottom:0.5rem">E se o bônus fechar/abrir antes?</p>
-        <p style="color:var(--text2);font-size:13px">Avise o streamer imediatamente. Bônus inválidos são desconsiderados do ranking.</p>
-      </div>
-      <div>
-        <p style="color:var(--gold);font-weight:700;margin-bottom:0.5rem">Como sou notificado de que ganhei?</p>
-        <p style="color:var(--text2);font-size:13px">O streamer avisa no chat da Twitch e você pode acompanhar o ranking em tempo real nesta aba.</p>
-      </div>
+      <a class="winbet-btn rhyno-btn" id="rhynoBtn" href="#" target="_blank" rel="noopener">IR PARA RHYNO</a>
+      <div class="rhyno-note">Você será levado para a fila oficial do Xand na Rhyno.</div>
     </div>
   </div>
 </div>
 
-<!-- SEÇÃO: RANKING LIVE -->
-<div class="category-section" id="ranking-section">
-  <div class="left" style="background:var(--dark);padding:1.2rem 1.4rem">
-    <h2 style="font-family:'Bebas Neue';font-size:36px;letter-spacing:2px;margin-bottom:1.5rem;color:var(--gold)">🏆 RANKING EM TEMPO REAL</h2>
-    
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:2rem">
-      <div style="background:var(--card);border:1px solid var(--border2);border-radius:12px;padding:1.5rem;text-align:center">
-        <p style="color:var(--text2);font-size:12px;margin-bottom:0.5rem">TOTAL JOGADORES</p>
-        <p style="font-family:'Bebas Neue';font-size:32px;color:var(--gold);letter-spacing:1px" id="st-tot">0</p>
-      </div>
-      <div style="background:var(--card);border:1px solid var(--border2);border-radius:12px;padding:1.5rem;text-align:center">
-        <p style="color:var(--text2);font-size:12px;margin-bottom:0.5rem">MAIOR RETORNO</p>
-        <p style="font-family:'Bebas Neue';font-size:32px;color:var(--gold);letter-spacing:1px" id="st-max">R$0</p>
-      </div>
-      <div style="background:var(--card);border:1px solid var(--border2);border-radius:12px;padding:1.5rem;text-align:center">
-        <p style="color:var(--text2);font-size:12px;margin-bottom:0.5rem">PRÊMIO TOTAL</p>
-        <p style="font-family:'Bebas Neue';font-size:32px;color:var(--gold);letter-spacing:1px" id="st-sum">R$0</p>
-      </div>
+<!-- COMO JOGAR -->
+<div class="site-view page-view" id="view-como">
+  <div class="page-inner">
+    <div class="page-hero">
+      <h1>COMO JOGAR</h1>
+      <p>Entenda o passo a passo da rinha, do pedido até o resultado no ranking.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-body"><h3>Escolha o slot</h3>
+        <p>Na aba "Slots", procure o jogo que quer sugerir. Não achou? Dá pra digitar o nome manualmente.</p></div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-body"><h3>Informe seu nick</h3>
+        <p>Coloque o seu nick do Discord certinho — é ele que aparece na roleta e no ranking.</p></div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="step-body"><h3>Aceite as regras e pague</h3>
+        <p>Leia as regras, marque que aceitou e clique em pagar. O valor do ticket é o mesmo pra todo mundo, definido pelo streamer.</p></div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">4</div>
+      <div class="step-body"><h3>Pagamento confirmado</h3>
+        <p>Assim que o pagamento é confirmado, sua call entra na fila automaticamente — sem precisar de aprovação manual.</p></div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">5</div>
+      <div class="step-body"><h3>Roleta e resultado</h3>
+        <p>Quando a rinha girar e a sua call sair sorteada, acompanhe o resultado na aba "Ranking" aqui do site.</p></div>
     </div>
 
-    <div id="rankList" style="display:flex;flex-direction:column;gap:1rem">
-      <div class="rank-empty" style="text-align:center;padding:2rem;color:var(--text2);font-size:14px">Nenhuma call lançada ainda</div>
+    <div class="winbet-cta">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;color:#fff">JOGUE NA WINBET</div>
+      <p>Essa é a casa oficial usada nas calls da rinha.</p>
+      <!-- TODO: preencher WINBET_LINK lá no <script>, no topo do arquivo, com o link real da Winbet -->
+      <a class="winbet-btn" id="winbetBtn" href="#" target="_blank" rel="noopener">IR PARA A WINBET</a>
     </div>
   </div>
 </div>
 
-<!-- NICK MODAL -->
-<div class="modal-bg" id="nm">
-  <div class="modal">
-    <h3>SEU NICK DO DISCORD</h3>
-    <input type="text" id="ni" placeholder="SeuNick#0000" maxlength="40">
-    <div class="modal-btns">
-      <button class="m-cancel" onclick="closeNick()">Cancelar</button>
-      <button class="m-ok" onclick="saveNick()">Salvar</button>
+<!-- RANKING PÚBLICO -->
+<div class="site-view page-view" id="view-ranking">
+  <div class="page-inner">
+    <div class="page-hero">
+      <h1>RANKING AO VIVO</h1>
+      <p>Atualiza automaticamente, em tempo real, pra qualquer visitante.</p>
     </div>
-  </div>
-</div>
-
-<!-- PAGAMENTO MODAL -->
-<div class="modal-bg" id="payMod">
-  <div class="modal">
-    <h3>PAGAMENTO</h3>
-    <div id="payStatus" style="text-align:center;color:var(--text2);font-size:14px;margin:0.6rem 0 1rem;line-height:1.5">
-      Aguardando confirmação do pagamento…<br>Não feche esta janela.
+    <div class="rank-stats">
+      <div class="stat-box"><div class="stat-val" id="pub-st-tot">0</div><div class="stat-lbl">Total de calls</div></div>
+      <div class="stat-box"><div class="stat-val" id="pub-st-sum">R$0</div><div class="stat-lbl">Total pago</div></div>
+      <div class="stat-box"><div class="stat-val" id="pub-st-max">R$0</div><div class="stat-lbl">Maior pagou</div></div>
     </div>
-    <div class="modal-btns">
-      <button class="m-cancel" onclick="closePayWait()">Fechar</button>
-    </div>
+    <div id="pubRankList"></div>
   </div>
 </div>
 
@@ -755,10 +751,15 @@ main{padding-top:0;display:flex;height:calc(100vh - 110px);overflow:hidden;posit
     <button onclick="logoutAp()" style="background:none;border:1px solid var(--border2);color:var(--text2);padding:7px 14px;border-radius:6px;cursor:pointer;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px">Sair</button>
   </div>
   <div class="ap-body">
-    <div class="ap-card">
+    <div class="ap-tools">
+      <button class="tool-btn" id="btnWheel" onclick="toggleWheel()">ROLETA: DESLIGADA</button>
+      <button class="tool-btn" id="btnFull" onclick="toggleFull()">TELA CHEIA</button>
+    </div>
+    <div class="ap-stage" id="apStage">
+      <div class="ap-card stage-wheel">
       <div class="ap-title"><span class="ico-float" style="animation-delay:0.1s"><svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1.3" fill="currentColor" stroke="none"/><circle cx="16" cy="8" r="1.3" fill="currentColor" stroke="none"/><circle cx="8" cy="16" r="1.3" fill="currentColor" stroke="none"/><circle cx="16" cy="16" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/></svg></span> ROLETA DE CALLS</div>
       <div class="wheel-wrap">
-        <canvas id="wc" width="300" height="300"></canvas>
+        <canvas id="wc" width="600" height="600"></canvas>
         <div class="w-ptr"></div>
         <button class="spin-btn" id="spinBtn" onclick="spinWheel()">GIRAR</button>
       </div>
@@ -766,44 +767,26 @@ main{padding-top:0;display:flex;height:calc(100vh - 110px);overflow:hidden;posit
         <div class="spin-status-nick" id="wn">Gire para sortear</div>
         <div class="spin-status-info" id="wi"></div>
       </div>
-      <div class="ctrl">
-        <div class="ctrl-lbl">BÔNUS GLOBAL (R$1 – R$25)</div>
-        <div class="ctrl-row">
-          <input type="number" id="bonusIn" min="1" max="25" value="20">
-          <button class="ctrl-btn" onclick="setBonus()">DEFINIR</button>
-        </div>
-        <div class="rinha-btns">
-          <button class="r-open" onclick="setRinha(true)"><span class="ico-float" style="animation-delay:0s"><svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg></span> ABRIR RINHA</button>
-          <button class="r-close" onclick="setRinha(false)"><span class="ico-float alt" style="animation-delay:0.3s"><svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span> FECHAR RINHA</button>
-        </div>
-      </div>
     </div>
-    <div class="ap-card">
+    <div class="ap-card stage-queue">
       <div class="rtabs">
         <button class="rtab active" id="tab-fila" onclick="switchTab('fila')"><span class="ico-float" style="animation-delay:0.2s"><svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="4" width="14" height="17" rx="2"/><rect x="9" y="2" width="6" height="4" rx="1"/><line x1="8" y1="11" x2="16" y2="11"/><line x1="8" y1="15" x2="16" y2="15"/></svg></span> FILA DE CALLS</button>
         <button class="rtab" id="tab-rank" onclick="switchTab('rank')"><span class="ico-float alt" style="animation-delay:0.4s"><svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 4h8v4a4 4 0 0 1-8 0V4z"/><path d="M8 5H5a3 3 0 0 0 3 4"/><path d="M16 5h3a3 3 0 0 1-3 4"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="16" x2="12" y2="20"/></svg></span> RANKING</button>
       </div>
       <div id="panel-fila">
-        <!-- ADICIONAR CALL MANUAL -->
-        <div style="background:var(--darker);border:1px solid var(--border2);border-radius:10px;padding:12px;margin-bottom:1rem">
-          <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:10px"><span class="ico-float" style="animation-delay:0s"><svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span> ADICIONAR CALL MANUALMENTE</div>
+        <!-- ADICIONAR PARTICIPANTE MANUALMENTE (alternativa administrativa; a fonte principal é a Rhyno) -->
+        <div id="manualBox" style="background:var(--darker);border:1px solid var(--border2);border-radius:10px;padding:12px;margin-bottom:1rem">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:4px"><span class="ico-float" style="animation-delay:0s"><svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span> ADICIONAR PARTICIPANTE MANUALMENTE</div>
+          <div style="font-size:11px;color:var(--text2);margin-bottom:10px;line-height:1.4">Os participantes da Rhyno chegam sozinhos nesta lista. Use este formulário só para casos avulsos.</div>
           <div style="display:flex;flex-direction:column;gap:8px">
-            <input type="text" id="adm-nick" placeholder="Nick do Discord" maxlength="40"
-              style="padding:9px 12px;background:var(--card2);border:1px solid var(--border2);border-radius:6px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:600;outline:none;transition:border-color 0.2s"
-              onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border2)'">
+            <input class="adm-in" type="text" id="adm-nick" placeholder="Nick da Twitch *" maxlength="40" autocomplete="off">
+            <input class="adm-in" type="text" id="adm-slot" list="slotList" placeholder="Jogo / slot *" maxlength="60" autocomplete="off">
+            <datalist id="slotList"></datalist>
             <div style="display:flex;gap:8px">
-              <select id="adm-plat" onchange="admLoadSlots()"
-                style="flex:1;padding:9px 12px;background:var(--card2);border:1px solid var(--border2);border-radius:6px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;outline:none">
-                <option value="winebet">WINEBET</option>
-              </select>
-              <select id="adm-slot"
-                style="flex:2;padding:9px 12px;background:var(--card2);border:1px solid var(--border2);border-radius:6px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;outline:none">
-              </select>
+              <input class="adm-in" style="flex:1;min-width:0" type="password" id="adm-pix" placeholder="Chave Pix *" maxlength="140" autocomplete="off">
+              <button type="button" class="pix-eye pix-eye-lg" onclick="togglePixInput()" title="Mostrar/ocultar chave Pix" id="adm-pix-eye"><svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button>
             </div>
-            <input type="text" id="adm-slot-manual" placeholder="Ou digite o jogo manualmente (opcional)" maxlength="60"
-              style="padding:9px 12px;background:var(--card2);border:1px solid var(--border2);border-radius:6px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:500;outline:none;transition:border-color 0.2s"
-              onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border2)'"
-              placeholder="Ou escreva o nome do jogo aqui (sobrescreve o select)">
+            <input class="adm-in" type="number" id="adm-valor" min="0" step="0.01" placeholder="Valor (opcional — vazio usa o bônus global)">
             <button onclick="admAddCall()"
               style="padding:10px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#08131c;border:none;border-radius:10px;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1.5px;cursor:pointer;transition:all 0.2s">
               ADICIONAR À FILA
@@ -811,7 +794,7 @@ main{padding-top:0;display:flex;height:calc(100vh - 110px);overflow:hidden;posit
           </div>
         </div>
         <div class="q-hdr">
-          <span class="ap-title" style="margin-bottom:0;font-size:14px">AGUARDANDO</span>
+          <span class="ap-title" style="margin-bottom:0;font-size:14px">POR ORDEM DE CHEGADA</span>
           <span class="q-cnt" id="qc">0 CALLS</span>
         </div>
         <div class="q-scroll" id="ql"></div>
@@ -825,6 +808,28 @@ main{padding-top:0;display:flex;height:calc(100vh - 110px);overflow:hidden;posit
         </div>
         <div class="rank-scroll" id="rankList"></div>
         <button class="clear-rank-btn" onclick="clearRank()"><span class="ico-float" style="animation-delay:0.5s"><svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="7" x2="20" y2="7"/><path d="M6 7l1 13a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-13"/><path d="M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/></svg></span> Limpar ranking</button>
+      </div>
+    </div>
+    </div>
+    <div class="ap-card ap-controls">
+      <div class="ctrl" style="margin-top:0">
+        <div class="ctrl-lbl">BÔNUS GLOBAL (R$1 – R$25)</div>
+        <div class="ctrl-row">
+          <input type="number" id="bonusIn" min="1" max="25" value="20">
+          <button class="ctrl-btn" onclick="setBonus()">DEFINIR</button>
+        </div>
+        <div class="rinha-btns">
+          <button class="r-open" onclick="setRinha(true)"><span class="ico-float" style="animation-delay:0s"><svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg></span> ABRIR RINHA</button>
+          <button class="r-close" onclick="setRinha(false)"><span class="ico-float alt" style="animation-delay:0.3s"><svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span> FECHAR RINHA</button>
+        </div>
+      </div>
+      <div class="ctrl" id="rhynoBox">
+        <div class="ctrl-lbl">FILA DA RHYNO</div>
+        <div class="ctrl-row">
+          <select class="adm-in" id="rhynoEvSel" onchange="setRhynoEvent()"><option value="">Escolha o evento…</option></select>
+          <button class="ctrl-btn" onclick="rhynoSyncNow()">ATUALIZAR</button>
+        </div>
+        <div class="rhyno-status" id="rhynoStatus">Aguardando a primeira consulta…</div>
       </div>
     </div>
   </div>
@@ -848,6 +853,17 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
+// ── LINK DA WINBET ──
+// TODO: troque pelo link real da Winbet. Usado no botão "IR PARA A WINBET"
+// na aba "Como Jogar".
+const WINBET_LINK = 'https://COLOQUE-O-LINK-DA-WINBET-AQUI';
+document.getElementById('winbetBtn').href = WINBET_LINK;
+
+// ── LINK DA FILA DA RHYNO ──
+// TODO: cole aqui o link oficial da fila do Xand na Rhyno (usado no botão "IR PARA RHYNO").
+// Enquanto estiver vazio, o botão apenas avisa que o link ainda não foi configurado.
+const RHYNO_FILA_LINK = '';
+
 // ── SEGURANÇA: senha via SHA-256 — nunca texto puro ──
 const ADMIN_USER_HASH = "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918";
 const ADMIN_PASS_HASH = "5e9c477a49e5b242c8480d1e9ab6f4be1225bbb6b77d8dbd1fadbfc198c059b7";
@@ -859,46 +875,65 @@ async function sha256(str){
 
 // ── ESTADO GLOBAL ──
 let S = {
-  plat:'888game', prov:'all', sel:null,
-  nick: localStorage.getItem('rfNick')||'',
   wAngle:0, spinning:false,
   // estado do Firebase
   rinhaOpen: false, bonus: 0,
-  queue: {}, rank: {}
+  queue: {}, rank: {},
+  // Só admin: chaves Pix (adminPrivate/pix) e quais estão reveladas na tela
+  pix: null, pixShown: {},
+  rhyno: {events:{}, eventId:null, status:null}
 };
 let _resItem=null, _toastTimer=null;
 
 // ── FIREBASE LISTENERS ──
-// Escuta estado da rinha em tempo real
+// PÚBLICOS (visitantes): apenas estado da rinha e ranking.
+// A fila de participantes e a chave Pix NÃO são lidas pelo site público —
+// só depois do login de admin (ver startAdminListeners).
 onValue(ref(db,'rinha/open'), snap => {
   S.rinhaOpen = snap.val() === true;
-  updateLock();
   updateStatus();
-  refreshBonusDisplay();
-  chkReady();
 });
 
 onValue(ref(db,'rinha/bonus'), snap => {
   S.bonus = snap.val() || 0;
-  refreshBonusDisplay();
-  chkReady();
-});
-
-onValue(ref(db,'queue'), snap => {
-  S.queue = snap.val() || {};
-  if(document.getElementById('ap').classList.contains('open')) renderQ();
-  drawWheel(0);
 });
 
 onValue(ref(db,'rank'), snap => {
   S.rank = snap.val() || {};
   if(document.getElementById('ap').classList.contains('open')) renderRank();
+  renderPublicRank();
 });
 
 // Oculta loading quando conectar
 onValue(ref(db,'rinha/open'), () => {
   document.getElementById('fbLoad').classList.add('hide');
 }, {onlyOnce: true});
+
+// SOMENTE ADMIN: fila (Rhyno + manual) e chaves Pix
+let _adminListening=false;
+function startAdminListeners(){
+  if(_adminListening)return;
+  _adminListening=true;
+  onValue(ref(db,'queue'), snap => {
+    S.queue = snap.val() || {};
+    renderQ();
+    drawWheel(0);
+  });
+  onValue(ref(db,'adminPrivate/rhynoEvents'), snap => { S.rhyno.events = snap.val() || {}; renderRhyno(); });
+  onValue(ref(db,'adminPrivate/config/rhynoEventId'), snap => { S.rhyno.eventId = snap.val() || null; renderRhyno(); });
+  onValue(ref(db,'adminPrivate/rhynoStatus'), snap => { S.rhyno.status = snap.val() || null; renderRhyno(); });
+  // Consulta a Rhyno agora e a cada 15s enquanto o painel estiver aberto e um evento escolhido
+  rhynoSyncNow();
+  setInterval(()=>{
+    if(S.rhyno.eventId && !document.hidden && document.getElementById('ap').classList.contains('open')) rhynoSyncNow();
+  },15000);
+  onValue(ref(db,'adminPrivate/pix'), snap => {
+    S.pix = snap.val() || {};
+    renderQ();
+    renderRank();
+  });
+}
+
 
 // ── IMAGENS ──
 const IMG={
@@ -1202,233 +1237,36 @@ const SLOTS={
   ],
 };
 
-const PLAT_LINKS={
-  winebet:"https://winebet.com/br?tag=d_6101469m_97143c_"
-};
-function getPlatLink(plat){
-  return PLAT_LINKS[plat]||"#";
-}
-
-const PROVS=[{key:"all",label:"Todos"},{key:"pp",label:"PP"},{key:"pg",label:"PG Soft"},
-  {key:"hack",label:"Hacksaw"},{key:"nolimit",label:"Nolimit"},{key:"btg",label:"BTG"},{key:"outros",label:"Outros"}];
-const BDGE={pp:"badge-pp",pg:"badge-pg",hack:"badge-hack",nolimit:"badge-nolimit",btg:"badge-btg",outros:"badge-outros"};
-const BLBL={pp:"PP",pg:"PG",hack:"HSG",nolimit:"NLC",btg:"BTG",outros:"OTHER"};
 const WCOLS=['#e63946','#e07c3a','#e8b84b','#2dc653','#1a9bfc','#9333ea','#e91e63','#00bcd4','#ff5722','#3498db','#c0392b','#16a085'];
 
-// ── MOBILE TABS ──
-function mobileTab(tab){
-  const isMobile=window.innerWidth<=700;
-  if(!isMobile)return;
-  document.getElementById('mtab-jogos').classList.toggle('active',tab==='jogos');
-  document.getElementById('mtab-painel').classList.toggle('active',tab==='painel');
-  document.querySelector('.left').style.display=tab==='jogos'?'block':'none';
-  const right=document.querySelector('.right');
-  if(tab==='painel'){right.classList.add('mobile-active');}
-  else{right.classList.remove('mobile-active');}
+// ── ABAS DO SITE (Rhyno / Como Jogar / Ranking) ──
+function siteTab(tab){
+  ['rhyno','como','ranking'].forEach(t=>{
+    document.getElementById('view-'+t).classList.toggle('active',tab===t);
+    document.getElementById('stab-'+t).classList.toggle('active',tab===t);
+  });
+  if(tab==='ranking')renderPublicRank();
+  window.scrollTo(0,0);
 }
-window.mobileTab=mobileTab;
+window.siteTab=siteTab;
+
+// ── BOTÃO "IR PARA RHYNO" ──
+// TODO: coloque em RHYNO_FILA_LINK (lá em cima) o link oficial da fila do Xand na Rhyno.
+function initRhynoBtn(){
+  const btn=document.getElementById('rhynoBtn');
+  if(RHYNO_FILA_LINK){btn.href=RHYNO_FILA_LINK;return;}
+  btn.addEventListener('click',e=>{
+    e.preventDefault();
+    showToast('Link da fila da Rhyno ainda não configurado.','info');
+  });
+}
 
 // ── UI HELPERS ──
-function updateLock(){
-  const lp=document.getElementById('leftPanel');
-  lp.classList.toggle('left-locked',!S.rinhaOpen);
-  if(!S.rinhaOpen)lp.scrollTop=0;
-}
 function updateStatus(){
   const dot=document.getElementById('statusDot');
   const txt=document.getElementById('statusTxt');
   dot.className='status-dot '+(S.rinhaOpen?'open':'closed');
   txt.textContent=S.rinhaOpen?'Rinha aberta':'Rinha fechada';
-}
-function refreshBonusDisplay(){
-  const bd=document.getElementById('bd');
-  if(!S.rinhaOpen){bd.className='bonus-wait';bd.innerHTML='<span class="ico-float alt" style="animation-delay:0.3s"><svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span> Rinha fechada';}
-  else if(S.bonus>0){bd.className='bonus-big';bd.textContent='R$ '+S.bonus;}
-  else{bd.className='bonus-wait';bd.textContent='Aguardando bônus';}
-  chkReady();
-}
-
-// ── PROV TABS ──
-function buildProvTabs(){
-  document.getElementById('provTabs').innerHTML=PROVS.map(p=>
-    `<button class="prov-tab${p.key==='all'?' active':''}" data-prov="${p.key}" onclick="setProv('${p.key}',this)">${p.label}</button>`
-  ).join('');
-}
-function setPlat(p,el){
-  S.plat=p;S.prov='all';S.sel=null;
-  document.querySelectorAll('.plat-btn').forEach(b=>b.classList.remove('active'));
-  el.classList.add('active');
-  buildProvTabs();clearPrev();renderSlots();
-  document.getElementById('manualInput').value='';
-}
-function setProv(p,el){
-  S.prov=p;
-  document.querySelectorAll('.prov-tab').forEach(t=>t.classList.remove('active'));
-  el.classList.add('active');filterSlots();
-}
-
-// ── RENDER GRID ──
-function renderSlots(){
-  const slots=SLOTS[S.plat];
-  document.getElementById('grid').innerHTML=slots.map((s,i)=>{
-    const img=IMG[s.name]||'';
-    return `<div class="sc" id="sc${i}">
-      ${img?`<img class="sc-thumb" src="${img}" alt="${s.name}" loading="lazy" onerror="this.style.opacity='0'">`
-           :`<div style="width:100%;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;font-size:32px;background:linear-gradient(135deg,#0d1a30,#091020)"><span class="ico-float" style="animation-delay:0s"><svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1.3" fill="currentColor" stroke="none"/><circle cx="16" cy="8" r="1.3" fill="currentColor" stroke="none"/><circle cx="8" cy="16" r="1.3" fill="currentColor" stroke="none"/><circle cx="16" cy="16" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/></svg></span></div>`}
-      <span class="sc-prov-badge ${BDGE[s.key]||'badge-outros'}">${BLBL[s.key]||'?'}</span>
-      <div class="sc-check">✓</div>
-      <div class="sc-info">
-        <div class="sc-name" title="${s.name}">${s.name}</div>
-        <div class="sc-prov">${s.prov}</div>
-      </div>
-    </div>`;
-  }).join('');
-  filterSlots();
-}
-function filterSlots(){
-  const q=document.getElementById('si').value.toLowerCase().trim();
-  const slots=SLOTS[S.plat];let v=0;
-  slots.forEach((s,i)=>{
-    const el=document.getElementById('sc'+i);if(!el)return;
-    const pm=S.prov==='all'||s.key===S.prov;
-    const tm=!q||s.name.toLowerCase().includes(q)||s.prov.toLowerCase().includes(q);
-    el.classList.toggle('hidden',!(pm&&tm));if(pm&&tm)v++;
-  });
-  document.getElementById('cntTag').textContent=v+' JOGOS';
-}
-
-// ── SELECT SLOT ──
-function selSlot(i){
-  if(!S.rinhaOpen)return;
-  const s=SLOTS[S.plat][i];
-  S.sel={...s,index:i,manual:false};
-  document.querySelectorAll('.sc').forEach(c=>c.classList.remove('selected'));
-  document.getElementById('sc'+i).classList.add('selected');
-  const img=IMG[s.name];
-  document.getElementById('prev').innerHTML=img
-    ?`<img src="${img}" style="width:100%;height:100%;object-fit:cover" alt="${s.name}">`
-    :`<div style="font-size:64px;display:flex;align-items:center;justify-content:center;width:100%;height:100%"><span class="ico-float" style="animation-delay:0s"><svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1.3" fill="currentColor" stroke="none"/><circle cx="16" cy="8" r="1.3" fill="currentColor" stroke="none"/><circle cx="8" cy="16" r="1.3" fill="currentColor" stroke="none"/><circle cx="16" cy="16" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/></svg></span></div>`;
-  document.getElementById('sn').textContent=s.name;document.getElementById('sn').style.display='block';
-  document.getElementById('ss').textContent=s.prov+' · '+S.plat;document.getElementById('ss').style.display='block';
-  document.getElementById('manualInput').value='';chkReady();
-  // No mobile, vai automaticamente para o painel
-  if(window.innerWidth<=700) mobileTab('painel');
-}
-function selectManual(){
-  if(!S.rinhaOpen){showToast('Rinha fechada!','err');return;}
-  const v=document.getElementById('manualInput').value.trim();
-  if(!v){showToast('Digite o nome do jogo!','err');return;}
-  S.sel={name:v,prov:'Manual',key:'outros',manual:true};
-  document.querySelectorAll('.sc').forEach(c=>c.classList.remove('selected'));
-  document.getElementById('prev').innerHTML=`<div style="font-size:64px;display:flex;align-items:center;justify-content:center;width:100%;height:100%"><span class="ico-float" style="animation-delay:0s"><svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1.3" fill="currentColor" stroke="none"/><circle cx="16" cy="8" r="1.3" fill="currentColor" stroke="none"/><circle cx="8" cy="16" r="1.3" fill="currentColor" stroke="none"/><circle cx="16" cy="16" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/></svg></span></div>`;
-  document.getElementById('sn').textContent=v;document.getElementById('sn').style.display='block';
-  document.getElementById('ss').textContent='Manual · '+S.plat;document.getElementById('ss').style.display='block';
-  showToast('<span class="ico-float" style="animation-delay:0s"><svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1.3" fill="currentColor" stroke="none"/><circle cx="16" cy="8" r="1.3" fill="currentColor" stroke="none"/><circle cx="8" cy="16" r="1.3" fill="currentColor" stroke="none"/><circle cx="16" cy="16" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/></svg></span> "'+v+'" selecionado!','info');chkReady();
-  if(window.innerWidth<=700) mobileTab('painel');
-}
-function clearPrev(){
-  S.sel=null;
-  document.getElementById('prev').innerHTML='<div class="no-sel"><span class="q"><span class="ico-float" style="animation-delay:0s"><svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1.3" fill="currentColor" stroke="none"/><circle cx="16" cy="8" r="1.3" fill="currentColor" stroke="none"/><circle cx="8" cy="16" r="1.3" fill="currentColor" stroke="none"/><circle cx="16" cy="16" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/></svg></span></span><p>Nenhum jogo selecionado<br>Escolha um card ou escreva o nome.</p></div>';
-  document.getElementById('sn').style.display='none';document.getElementById('ss').style.display='none';
-}
-
-// ── NICK ──
-function openNick(){document.getElementById('ni').value=S.nick;document.getElementById('nm').classList.add('open');setTimeout(()=>document.getElementById('ni').focus(),80);}
-function closeNick(){document.getElementById('nm').classList.remove('open');}
-async function saveNick(){
-  const v=document.getElementById('ni').value.trim();
-  if(!v){showToast('Informe seu nick!','err');return;}
-  // Verifica dedup no Firebase
-  if(S.rinhaOpen){
-    const snap=await get(ref(db,'nicksSent/'+v.toLowerCase().replace(/[^a-z0-9]/g,'_')));
-    if(snap.exists()){showToast('<svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4l9 16H3z"/><line x1="12" y1="10" x2="12" y2="14"/><circle cx="12" cy="17" r=".6" fill="currentColor" stroke="none"/></svg> Este nick já enviou uma call nesta rinha!','err');return;}
-  }
-  S.nick=v;localStorage.setItem('rfNick',v);
-  document.getElementById('nd').textContent=v;closeNick();chkReady();
-}
-document.getElementById('nm').addEventListener('click',function(e){if(e.target===this)closeNick();});
-document.getElementById('payMod').addEventListener('click',function(e){if(e.target===this)closePayWait();});
-document.getElementById('ni').addEventListener('keydown',e=>{if(e.key==='Enter')saveNick();});
-if(S.nick)document.getElementById('nd').textContent=S.nick;
-
-// ── CHECK READY ──
-function chkReady(){
-  const ok=S.sel&&S.nick&&document.getElementById('ac').checked&&S.rinhaOpen;
-  const sb=document.getElementById('sb');
-  if(!S.rinhaOpen){sb.className='sub-btn off';sb.textContent='RINHA FECHADA';return;}
-  if(ok){sb.className='sub-btn on';sb.textContent='PAGAR E ENVIAR CALL';}
-  else sb.className='sub-btn off',sb.textContent=!S.nick?'DEFINA SEU NICK':!S.sel?'ESCOLHA UM SLOT':'ACEITE AS REGRAS';
-}
-
-// ── CHECKOUT (Cool Rhyno) — a call só entra na fila depois do pagamento confirmado ──
-//
-// <svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4l9 16H3z"/><line x1="12" y1="10" x2="12" y2="14"/><circle cx="12" cy="17" r=".6" fill="currentColor" stroke="none"/></svg> IMPORTANTE: não achei documentação pública da API/webhook da Cool Rhyno
-// (thecoolrhyno.com), então os pontos abaixo marcados com "TODO" são placeholders.
-// Depois de criar sua conta lá, pegue no painel deles:
-//   1) a URL de checkout correta e o nome do parâmetro de referência externa
-//   2) as docs de Webhook (endpoint, nome do cabeçalho de assinatura, campos do payload)
-// e ajuste aqui e no arquivo da Cloud Function (coolrhyno-webhook.js).
-const COOLRHYNO_CHECKOUT_BASE='https://thecoolrhyno.com/checkout'; // TODO: confirmar URL real de checkout
-const COOLRHYNO_REF_PARAM='ref'; // TODO: confirmar nome do parâmetro de referência externa
-
-function genOrderId(){return 'hx_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,8);}
-
-let _payUnsub=null;
-async function startCheckout(){
-  if(!S.rinhaOpen||!S.sel||!S.nick||!document.getElementById('ac').checked)return;
-  // Abre a aba ANTES de qualquer await — em celular, se a aba só é aberta
-  // depois de uma consulta assíncrona ao Firebase, o navegador não reconhece
-  // mais como ação direta do clique e bloqueia o popup (esse era o bug do
-  // "não redireciona no celular").
-  const checkoutTab=window.open('','_blank');
-  const nickKey=S.nick.toLowerCase().replace(/[^a-z0-9]/g,'_');
-  // Verifica dedup
-  const snap=await get(ref(db,'nicksSent/'+nickKey));
-  if(snap.exists()){
-    if(checkoutTab)checkoutTab.close();
-    showToast('<svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4l9 16H3z"/><line x1="12" y1="10" x2="12" y2="14"/><circle cx="12" cy="17" r=".6" fill="currentColor" stroke="none"/></svg> Nick já enviou nesta rinha!','err');
-    return;
-  }
-  const orderId=genOrderId();
-  const pendingEntry={
-    nick:S.nick,slot:S.sel.name,prov:S.sel.prov,platform:S.plat,
-    bonus:S.bonus,manual:S.sel.manual||false,ts:Date.now(),status:'pending'
-  };
-  // Guarda o pedido como "pendente" — só vira call de verdade quando o
-  // webhook da Cool Rhyno confirmar o pagamento (ver coolrhyno-webhook.js)
-  await set(ref(db,'pending/'+orderId),pendingEntry);
-  const url=COOLRHYNO_CHECKOUT_BASE+'?'+COOLRHYNO_REF_PARAM+'='+encodeURIComponent(orderId)+'&valor='+encodeURIComponent(S.bonus);
-  if(checkoutTab){
-    checkoutTab.location.href=url;
-  }else{
-    // Se mesmo assim o navegador bloqueou a aba (ex: bloqueio manual do usuário),
-    // cai pra um link clicável dentro do próprio modal de espera.
-    window.open(url,'_blank');
-  }
-  openPayWait(orderId);
-}
-
-function openPayWait(orderId){
-  document.getElementById('payStatus').innerHTML='Aguardando confirmação do pagamento…<br>Não feche esta janela.';
-  document.getElementById('payMod').classList.add('open');
-  if(_payUnsub)_payUnsub();
-  _payUnsub=onValue(ref(db,'pending/'+orderId),(snap)=>{
-    const v=snap.val();
-    if(!v)return;
-    if(v.status==='paid'){
-      closePayWait();
-      showToast('<svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg> Pagamento confirmado! Call enviada <svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1.3" fill="currentColor" stroke="none"/><circle cx="16" cy="8" r="1.3" fill="currentColor" stroke="none"/><circle cx="8" cy="16" r="1.3" fill="currentColor" stroke="none"/><circle cx="16" cy="16" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/></svg>','ok');
-      clearPrev();document.querySelectorAll('.sc').forEach(c=>c.classList.remove('selected'));
-      document.getElementById('ac').checked=false;document.getElementById('manualInput').value='';chkReady();
-    }else if(v.status==='failed'||v.status==='expired'){
-      closePayWait();
-      showToast('<svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></svg> Pagamento não confirmado. Tente novamente.','err');
-    }
-  });
-}
-function closePayWait(){
-  document.getElementById('payMod').classList.remove('open');
-  if(_payUnsub){_payUnsub();_payUnsub=null;}
 }
 
 // ── TOAST ──
@@ -1442,7 +1280,7 @@ function showToast(msg,type){
 // ── ADMIN LOGIN com SHA-256 ──
 function openAdmin(){document.getElementById('al').classList.add('open');document.getElementById('le').style.display='none';}
 function closeAdmin(){document.getElementById('al').classList.remove('open');}
-function logoutAp(){document.getElementById('ap').classList.remove('open');}
+function logoutAp(){document.getElementById('ap').classList.remove('open');S.pixShown={};if(document.fullscreenElement)document.exitFullscreen();setFull(false);}
 async function doLogin(){
   const u=document.getElementById('lu').value.trim();
   const p=document.getElementById('lp').value;
@@ -1452,6 +1290,7 @@ async function doLogin(){
     document.getElementById('al').classList.remove('open');
     document.getElementById('ap').classList.add('open');
     admLoadSlots();
+    startAdminListeners();
     renderQ();renderRank();drawWheel(0);
   } else document.getElementById('le').style.display='block';
 }
@@ -1474,37 +1313,121 @@ async function setRinha(o){
   }
 }
 
-// ── ADMIN: ADICIONAR CALL MANUAL ──
+// ── ADMIN: ADICIONAR PARTICIPANTE MANUAL (origem = MANUAL) ──
+// Obrigatórios: nick da Twitch, jogo/slot e chave Pix. Valor é opcional.
+// Dados públicos vão em queue/{id}; a chave Pix vai SEPARADA em adminPrivate/pix/{id}.
 function admLoadSlots(){
-  const plat=document.getElementById('adm-plat').value;
-  const sel=document.getElementById('adm-slot');
-  sel.innerHTML=SLOTS[plat].map(s=>`<option value="${s.name}">${s.name}</option>`).join('');
+  const names=[...new Set((SLOTS.winebet||[]).map(s=>s.name))];
+  document.getElementById('slotList').innerHTML=names.map(n=>`<option value="${esc(n)}"></option>`).join('');
 }
-window.admLoadSlots=admLoadSlots;
+function togglePixInput(){
+  const i=document.getElementById('adm-pix');
+  const show=i.type==='password';
+  i.type=show?'text':'password';
+  document.getElementById('adm-pix-eye').innerHTML=show?EYE_OFF:EYE;
+}
 
 async function admAddCall(){
   const nick=document.getElementById('adm-nick').value.trim();
-  const plat=document.getElementById('adm-plat').value;
-  const selSlotVal=document.getElementById('adm-slot').value;
-  const manual=document.getElementById('adm-slot-manual').value.trim();
-  const slotName=manual||selSlotVal;
-  const slotProv=manual?'Manual':(SLOTS[plat].find(s=>s.name===slotName)?.prov||'');
-  if(!nick){showToast('Informe o nick!','err');return;}
-  if(!slotName){showToast('Escolha um slot!','err');return;}
+  const slotName=document.getElementById('adm-slot').value.trim();
+  const pix=document.getElementById('adm-pix').value.trim();
+  const valorRaw=document.getElementById('adm-valor').value.trim();
+  if(!nick){showToast('Informe o nick da Twitch!','err');return;}
+  if(!slotName){showToast('Informe o jogo/slot!','err');return;}
+  if(!pix){showToast('Informe a chave Pix!','err');return;}
+  let valor=null;
+  if(valorRaw!==''){
+    valor=parseFloat(valorRaw.replace(',','.'));
+    if(isNaN(valor)||valor<0){showToast('Valor inválido!','err');return;}
+  }
+  const known=(SLOTS.winebet||[]).find(s=>s.name.toLowerCase()===slotName.toLowerCase());
+  const now=Date.now();
   const entry={
-    nick,slot:slotName,prov:slotProv,platform:plat,
-    bonus:S.bonus,time:new Date().toLocaleTimeString('pt-BR'),
-    manual:!!manual,ts:Date.now(),addedByAdmin:true
+    nick,
+    slot:known?known.name:slotName,
+    prov:known?known.prov:'Manual',
+    source:'MANUAL',
+    externalId:null,
+    valor,
+    bonus:valor!=null?valor:S.bonus,
+    platform:'manual',
+    participatedAt:now,
+    time:new Date().toLocaleTimeString('pt-BR'),
+    ts:now,addedByAdmin:true
   };
-  const newRef=push(ref(db,'queue'));
-  await set(newRef,entry);
+  const key=push(ref(db,'queue')).key;
+  // Uma gravação só: participante (fila) + Pix (área privada)
+  await update(ref(db),{['queue/'+key]:entry,['adminPrivate/pix/'+key]:pix});
   const nickKey=nick.toLowerCase().replace(/[^a-z0-9]/g,'_');
   await set(ref(db,'nicksSent/'+nickKey),true);
-  document.getElementById('adm-nick').value='';
-  document.getElementById('adm-slot-manual').value='';
-  showToast('<svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg> '+nick+' adicionado à fila!','ok');
+  ['adm-nick','adm-slot','adm-pix','adm-valor'].forEach(id=>document.getElementById(id).value='');
+  const pi=document.getElementById('adm-pix');pi.type='password';
+  document.getElementById('adm-pix-eye').innerHTML=EYE;
+  showToast(nick+' adicionado à fila!','ok');
 }
-window.admAddCall=admAddCall;
+window.admAddCall=admAddCall;window.togglePixInput=togglePixInput;
+
+
+// ── ADMIN: PALCO (fila por ordem de chegada é o principal; roleta é opcional) ──
+function setWheel(on){
+  const st=document.getElementById('apStage');
+  st.classList.toggle('wheel-on',on);
+  document.body.classList.toggle('wheel-off',!on);
+  const b=document.getElementById('btnWheel');
+  b.classList.toggle('on',on);
+  b.textContent='ROLETA: '+(on?'LIGADA':'DESLIGADA');
+  try{localStorage.setItem('hxWheel',on?'1':'0');}catch(e){}
+  if(on)drawWheel(-S.wAngle);
+}
+function toggleWheel(){setWheel(!document.getElementById('apStage').classList.contains('wheel-on'));}
+function setFull(on){
+  document.body.classList.toggle('is-full',on);
+  const b=document.getElementById('btnFull');
+  b.classList.toggle('on',on);
+  b.textContent=on?'SAIR DA TELA CHEIA':'TELA CHEIA';
+}
+async function toggleFull(){
+  const on=!document.body.classList.contains('is-full');
+  if(on)S.pixShown={};
+  setFull(on);
+  try{
+    if(on&&!document.fullscreenElement&&document.documentElement.requestFullscreen)await document.documentElement.requestFullscreen();
+    if(!on&&document.fullscreenElement)await document.exitFullscreen();
+  }catch(e){/* sem API de tela cheia (ex.: iPhone): fica só o modo limpo */}
+}
+// Se o usuário sair com ESC, volta o botão ao normal
+document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement)setFull(false);});
+// Lançar resultado direto de um item da fila (sem precisar girar a roleta)
+function resultQ(key){
+  const it=(S.queue||{})[key];
+  if(it)openRes({...it,_key:key});
+}
+
+// ── RHYNO: evento, estado e atualização (a consulta em si roda no servidor) ──
+function renderRhyno(){
+  const sel=document.getElementById('rhynoEvSel');if(!sel)return;
+  const evs=Object.values(S.rhyno.events||{});
+  sel.innerHTML='<option value="">Escolha o evento…</option>'+evs.map(e=>
+    `<option value="${esc(e.id)}"${e.id===S.rhyno.eventId?' selected':''}>${esc(e.name)}${e.occupied!=null?' ('+e.occupied+')':''}</option>`).join('');
+  const st=S.rhyno.status,el=document.getElementById('rhynoStatus');
+  if(!st){el.className='rhyno-status';el.textContent='Aguardando a primeira consulta…';return;}
+  const hora=new Date(st.at).toLocaleTimeString('pt-BR');
+  if(!st.ok){el.className='rhyno-status err';el.innerHTML='<b>✖ Erro:</b> '+esc(st.message||'falha ao consultar a Rhyno')+' <i>('+hora+')</i>';return;}
+  if(st.message){el.className='rhyno-status';el.textContent=st.message;return;}
+  let extra='';
+  if(st.pixMissing)extra+=' · <b style="color:var(--red)">'+st.pixMissing+' sem Pix</b>';
+  if(st.slotMissing)extra+=' · '+st.slotMissing+' sem jogo';
+  el.className='rhyno-status ok';
+  el.innerHTML='<b>✔ Conectado</b> · '+esc(st.eventName||'')+' · '+(st.entries||0)+' na fila da Rhyno'+extra+' <i>('+hora+')</i>';
+}
+async function rhynoSyncNow(){
+  try{await set(ref(db,'adminPrivate/rhynoSyncRequest'),Date.now());}catch(e){console.error(e);}
+}
+async function setRhynoEvent(){
+  const v=document.getElementById('rhynoEvSel').value;
+  await set(ref(db,'adminPrivate/config/rhynoEventId'),v||null);
+  if(v)rhynoSyncNow();
+}
 
 // ── TABS ──
 function switchTab(tab){
@@ -1515,34 +1438,81 @@ function switchTab(tab){
   if(tab==='rank')renderRank();
 }
 
-// ── QUEUE ──
+// ── PIX (somente admin) ──
+const EYE=`<svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>`;
+const EYE_OFF=`<svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3l18 18"/><path d="M10.6 6.1A10.4 10.4 0 0 1 12 6c6.4 0 10 6 10 6a17 17 0 0 1-3.2 3.9"/><path d="M6.6 6.7A17 17 0 0 0 2 12s3.6 6 10 6a10 10 0 0 0 4.2-.9"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>`;
+const PIX_MASK='••••••••••••••';
+// Linha "PIX: •••• 👁" — oculta por padrão; se não houver Pix, permite informar.
+function pixRow(key){
+  if(S.pix===null)return '';
+  const p=S.pix[key];
+  if(!p){
+    return `<div class="pix-row pix-missing"><span>SEM PIX:</span>
+      <input type="text" id="pixin-${key}" placeholder="Informar chave Pix" maxlength="140" autocomplete="off" onkeydown="if(event.key==='Enter')savePix('${key}')">
+      <button onclick="savePix('${key}')">Salvar</button></div>`;
+  }
+  const shown=!!S.pixShown[key];
+  return `<div class="pix-row"><span>PIX:</span><span class="pix-val">${shown?esc(p):PIX_MASK}</span>
+    <button class="pix-eye" onclick="togglePix('${key}')" title="${shown?'Ocultar':'Mostrar'} chave Pix">${shown?EYE_OFF:EYE}</button></div>`;
+}
+function togglePix(key){
+  S.pixShown[key]=!S.pixShown[key];
+  renderQ();renderRank();
+}
+async function savePix(key){
+  const el=document.getElementById('pixin-'+key);
+  const v=el?el.value.trim():'';
+  if(!v){showToast('Informe a chave Pix!','err');return;}
+  await set(ref(db,'adminPrivate/pix/'+key),v);
+  showToast('Chave Pix salva!','ok');
+}
+// Remove Pix que não pertence mais a ninguém (fora da fila e sem lançamento no ranking)
+async function pruneOrphanPix(keepKeys){
+  try{
+    const keep=new Set(keepKeys);
+    const snap=await get(ref(db,'adminPrivate/pix'));
+    const all=snap.val()||{};const upd={};
+    Object.keys(all).forEach(k=>{if(!keep.has(k))upd['adminPrivate/pix/'+k]=null;});
+    if(Object.keys(upd).length)await update(ref(db),upd);
+  }catch(e){console.error('pruneOrphanPix',e);}
+}
+function origem(it){return esc(it.source||it.platform||'');}
+
+// ── QUEUE (Rhyno + manual na MESMA lista/roleta) ──
 async function clearQ(){
   if(!confirm('Limpar toda a fila?'))return;
   await set(ref(db,'queue'),null);
+  // mantém só o Pix de quem já foi lançado no ranking (precisa pagar)
+  await pruneOrphanPix(Object.values(S.rank||{}).map(r=>r.pid).filter(Boolean));
   document.getElementById('wn').textContent='Gire para sortear';document.getElementById('wi').textContent='';
   showToast('Fila limpa!','info');
 }
 async function removeQItem(key){
-  await remove(ref(db,'queue/'+key));
+  await update(ref(db),{['queue/'+key]:null,['adminPrivate/pix/'+key]:null});
 }
 function renderQ(){
   const q=S.queue||{};
   const items=Object.entries(q).sort((a,b)=>(a[1].ts||0)-(b[1].ts||0));
   document.getElementById('qc').textContent=items.length+' CALL'+(items.length!==1?'S':'');
   const l=document.getElementById('ql');
-  if(!items.length){l.innerHTML='<div class="q-empty">Nenhuma call na fila ainda</div>';return;}
+  if(!items.length){l.innerHTML='<div class="q-empty">Nenhum participante na fila ainda</div>';return;}
   l.innerHTML=items.map(([key,it],i)=>{
     const img=IMG[it.slot]||'';
-    const thumb=img?`<img class="qi-thumb" src="${img}" alt="${it.slot}">`
+    const thumb=img?`<img class="qi-thumb" src="${img}" alt="${esc(it.slot)}">`
                    :`<div class="qi-thumb" style="display:flex;align-items:center;justify-content:center;font-size:16px"><span class="ico-float" style="animation-delay:0s"><svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1.3" fill="currentColor" stroke="none"/><circle cx="16" cy="8" r="1.3" fill="currentColor" stroke="none"/><circle cx="8" cy="16" r="1.3" fill="currentColor" stroke="none"/><circle cx="16" cy="16" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/></svg></span></div>`;
-    return `<div class="qi">
+    const src=it.source||(it.addedByAdmin?'MANUAL':'');
+    const srcBadge=(src?`<span class="qi-plat qi-src${src==='MANUAL'?' manual':''}">${esc(src)}</span>`:'')+(it.quantity>1?`<span class="qi-plat qi-src">×${it.quantity}</span>`:'');
+    const val=it.valor!=null?it.valor:(it.bonus||'?');
+    return `<div class="qi${i===0?' first':''}">
       <div class="qi-num">${i+1}</div>
       ${thumb}
       <div class="qi-b">
-        <div class="qi-nick">${esc(it.nick)}</div>
-        <div class="qi-det">${esc(it.slot)}<span class="qi-plat qi-winebet">${it.platform}</span>${it.manual?'<span class="qi-plat" style="background:rgba(111,216,255,0.15);color:var(--gold)">manual</span>':''}</div>
+        <div class="qi-nick">${esc(it.nick)}${i===0?'<span class="qi-next">PRÓXIMO</span>':''}</div>
+        <div class="qi-det">${esc(it.slot)}${srcBadge}</div>
+        ${pixRow(key)}
       </div>
-      <div class="qi-bonus">R$${it.bonus||'?'}</div>
+      <div class="qi-bonus">R$${esc(val)}</div>
+      <button class="qi-go" onclick="resultQ('${key}')" title="Lançar resultado">✓</button>
       <button class="qi-del" onclick="removeQItem('${key}')" title="Remover"><span class="ico-float" style="animation-delay:0s">✕</span></button>
     </div>`;
   }).join('');
@@ -1552,7 +1522,7 @@ function renderQ(){
 function openRes(item){
   _resItem=item;
   document.getElementById('resNick').textContent=item.nick;
-  document.getElementById('resSlot').textContent=item.slot+' · '+item.platform;
+  document.getElementById('resSlot').textContent=item.slot+' · '+(item.source||item.platform||'');
   document.getElementById('resVal').value='';
   document.getElementById('resMod').classList.add('open');
   setTimeout(()=>document.getElementById('resVal').focus(),150);
@@ -1567,7 +1537,7 @@ async function salvarRes(){
   // Salva no ranking do Firebase
   const rankEntry={
     nick:_resItem.nick,slot:_resItem.slot,prov:_resItem.prov,
-    platform:_resItem.platform,bonus:_resItem.bonus,paid:val,pending:false,
+    platform:_resItem.platform||String(_resItem.source||'').toLowerCase(),source:_resItem.source||null,pid:_resItem._key||null,bonus:(_resItem.valor!=null?_resItem.valor:_resItem.bonus),paid:val,pending:false,
     time:_resItem.time,paidAt:new Date().toLocaleTimeString('pt-BR'),
     paidDate:new Date().toLocaleDateString('pt-BR'),ts:Date.now()
   };
@@ -1586,7 +1556,7 @@ async function salvarResDepois(){
   if(!_resItem)return;
   const rankEntry={
     nick:_resItem.nick,slot:_resItem.slot,prov:_resItem.prov,
-    platform:_resItem.platform,bonus:_resItem.bonus,paid:null,pending:true,
+    platform:_resItem.platform||String(_resItem.source||'').toLowerCase(),source:_resItem.source||null,pid:_resItem._key||null,bonus:(_resItem.valor!=null?_resItem.valor:_resItem.bonus),paid:null,pending:true,
     time:_resItem.time,paidAt:null,paidDate:null,ts:Date.now()
   };
   await push(ref(db,'rank'),rankEntry);
@@ -1646,7 +1616,43 @@ function renderRank(){
       ${thumb}
       <div class="ri-b">
         <div class="ri-nick">${esc(it.nick)} <span class="ri-badge${it.pending?' pending':''}">${it.pending?'AGUARDANDO VALOR':'PAGOU'}</span></div>
-        <div class="ri-det">${esc(it.slot)} · ${it.platform} · bônus R$${it.bonus||'?'} · ${it.paidDate||''} ${it.paidAt||''}</div>
+        <div class="ri-det">${esc(it.slot)} · ${origem(it)} · bônus R$${it.bonus||'?'} · ${it.paidDate||''} ${it.paidAt||''}</div>
+        ${it.pid?pixRow(it.pid):''}
+      </div>
+      ${rightSide}
+    </div>`;
+  }).join('');
+}
+
+// ── RANKING PÚBLICO (sem login, só leitura) ──
+function renderPublicRank(){
+  const listEl=document.getElementById('pubRankList');
+  if(!listEl)return; // ainda não montou o DOM
+  const rank=S.rank||{};
+  const items=Object.values(rank).sort((a,b)=>(b.paid||0)-(a.paid||0));
+  const tot=items.length;
+  const paidItems=items.filter(r=>!r.pending&&r.paid!=null);
+  const max=paidItems.length?Math.max(...paidItems.map(r=>r.paid)):0;
+  const sum=paidItems.reduce((s,r)=>s+(r.paid||0),0);
+  document.getElementById('pub-st-tot').textContent=tot;
+  document.getElementById('pub-st-max').textContent='R$'+max.toFixed(0);
+  document.getElementById('pub-st-sum').textContent='R$'+sum.toFixed(0);
+  if(!items.length){listEl.innerHTML='<div class="rank-empty">Nenhuma call lançada ainda</div>';return;}
+  const pc=(i)=>i===0?'gold':i===1?'silver':i===2?'bronze':'normal';
+  listEl.innerHTML=items.map((it,i)=>{
+    const img=IMG[it.slot]||'';
+    const thumb=img?`<img class="ri-thumb" src="${img}" alt="${it.slot}">`
+                   :`<div class="ri-thumb" style="display:flex;align-items:center;justify-content:center;font-size:18px"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1.3" fill="currentColor" stroke="none"/><circle cx="16" cy="8" r="1.3" fill="currentColor" stroke="none"/><circle cx="8" cy="16" r="1.3" fill="currentColor" stroke="none"/><circle cx="16" cy="16" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/></svg></div>`;
+    const mult=it.bonus&&it.paid?(it.paid/it.bonus).toFixed(1)+'x':'—';
+    const rightSide=it.pending
+      ?`<div class="ri-mult">aguardando valor</div>`
+      :`<div style="text-align:right;flex-shrink:0"><div class="ri-val">R$${parseFloat(it.paid).toFixed(2)}</div><div class="ri-mult">${mult}</div></div>`;
+    return `<div class="ri">
+      <div class="ri-pos ${pc(i)}">${i+1}</div>
+      ${thumb}
+      <div class="ri-b">
+        <div class="ri-nick">${esc(it.nick)} <span class="ri-badge${it.pending?' pending':''}">${it.pending?'AGUARDANDO VALOR':'PAGOU'}</span></div>
+        <div class="ri-det">${esc(it.slot)} · ${origem(it)} · bônus R$${it.bonus||'?'}</div>
       </div>
       ${rightSide}
     </div>`;
@@ -1655,6 +1661,7 @@ function renderRank(){
 async function clearRank(){
   if(!confirm('Limpar todo o ranking?'))return;
   await set(ref(db,'rank'),null);
+  await pruneOrphanPix(Object.keys(S.queue||{}));
   showToast('Ranking limpo!','err');
 }
 
@@ -1662,6 +1669,7 @@ async function clearRank(){
 function drawWheel(ang){
   const cv=document.getElementById('wc');if(!cv)return;
   const ctx=cv.getContext('2d'),W=300,cx=150,cy=150,r=146;
+  ctx.setTransform(2,0,0,2,0,0);
   ctx.clearRect(0,0,W,W);
   const q=S.queue||{};
   const items=Object.entries(q).sort((a,b)=>(a[1].ts||0)-(b[1].ts||0));
@@ -1707,8 +1715,8 @@ function spinWheel(){
     const fa=((S.wAngle)%(2*Math.PI)+2*Math.PI)%(2*Math.PI);
     const idx=Math.floor(fa/arc)%n;
     const [key,winner]=items[idx];
-    document.getElementById('wn').innerHTML='🏆 '+esc(winner.nick);
-    document.getElementById('wi').textContent=winner.slot+' · '+winner.platform;
+    document.getElementById('wn').innerHTML='<svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 4h8v4a4 4 0 0 1-8 0V4z"/><path d="M8 5H5a3 3 0 0 0 3 4"/><path d="M16 5h3a3 3 0 0 1-3 4"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="16" x2="12" y2="20"/></svg> '+esc(winner.nick);
+    document.getElementById('wi').textContent=winner.slot+' · '+(winner.source||winner.platform||'');
     setTimeout(()=>openRes({...winner,_key:key}),600);
   }
   requestAnimationFrame(frame);
@@ -1718,52 +1726,20 @@ function spinWheel(){
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 
 // Expõe funções para o HTML inline
-window.setPlat=setPlat;window.setProv=setProv;window.selectManual=selectManual;
-window.openNick=openNick;window.closeNick=closeNick;window.saveNick=saveNick;
-window.startCheckout=startCheckout;window.closePayWait=closePayWait;
 window.openAdmin=openAdmin;window.closeAdmin=closeAdmin;
 window.logoutAp=logoutAp;window.doLogin=doLogin;window.setBonus=setBonus;
 window.setRinha=setRinha;window.switchTab=switchTab;window.clearQ=clearQ;
 window.removeQItem=removeQItem;window.clearRank=clearRank;window.spinWheel=spinWheel;
 window.closeRes=closeRes;window.resortear=resortear;window.salvarRes=salvarRes;
 window.salvarResDepois=salvarResDepois;window.savePendingValue=savePendingValue;
-window.filterSlots=filterSlots;window.selSlot=selSlot;window.chkReady=chkReady;window.mobileTab=mobileTab;
-window.admLoadSlots=admLoadSlots;window.admAddCall=admAddCall;
-
-// Event delegation para clicks na grid — evita problema de onclick em módulo
-document.getElementById('grid').addEventListener('click',function(e){
-  const card=e.target.closest('.sc');
-  if(!card)return;
-  const idx=parseInt(card.id.replace('sc',''));
-  if(!isNaN(idx))selSlot(idx);
-});
-
-// ── CATEGORY NAVIGATION ──
-let S_currentCategory='slots';
-function switchCategory(cat){
-  // Ocultar seção anterior
-  const prevMain=document.querySelector('main');
-  if(prevMain)prevMain.style.display='none';
-  const prevSection=document.getElementById(S_currentCategory+'-section');
-  if(prevSection)prevSection.style.display='none';
-  
-  // Mostrar nova seção
-  if(cat==='slots'){
-    if(prevMain)prevMain.style.display='flex';
-  }else{
-    const newSection=document.getElementById(cat+'-section');
-    if(newSection)newSection.style.display='block';
-  }
-  
-  // Atualizar botões do menu
-  document.querySelectorAll('.cat-btn').forEach(btn=>btn.classList.remove('active'));
-  event.target.closest('.cat-btn').classList.add('active');
-  
-  S_currentCategory=cat;
-}
+window.togglePix=togglePix;window.savePix=savePix;
+window.rhynoSyncNow=rhynoSyncNow;window.setRhynoEvent=setRhynoEvent;window.toggleWheel=toggleWheel;window.toggleFull=toggleFull;window.resultQ=resultQ;
+window.admLoadSlots=admLoadSlots;window.admAddCall=admAddCall;window.togglePixInput=togglePixInput;
 
 // ── INIT ──
-buildProvTabs();renderSlots();
+initRhynoBtn();
+let _w=false;try{_w=localStorage.getItem('hxWheel')==='1';}catch(e){}
+setWheel(_w);
 
 </script>
 </body>

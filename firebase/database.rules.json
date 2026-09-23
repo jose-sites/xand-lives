@@ -1,0 +1,11 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "rinha":        { ".read": true,  ".write": "auth != null && auth.token.admin === true" },
+    "rank":         { ".read": true,  ".write": "auth != null && auth.token.admin === true" },
+    "queue":        { ".read": "auth != null && auth.token.admin === true", ".write": "auth != null && auth.token.admin === true" },
+    "nicksSent":    { ".read": "auth != null && auth.token.admin === true", ".write": "auth != null && auth.token.admin === true" },
+    "adminPrivate": { ".read": "auth != null && auth.token.admin === true", ".write": "auth != null && auth.token.admin === true" }
+  }
+}
